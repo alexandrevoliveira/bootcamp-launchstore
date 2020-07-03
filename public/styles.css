@@ -100,11 +100,17 @@ header div.container a{
 
 /* HEADER SEARCH */
 
+.search {
+    display: flex;
+    align-items: center;
+}
+
 .search input {
     width: 100%;
     padding: 8px 16px;
     border-radius: 2px;
     font-size: 16px;
+    margin-right: 8px;
 }
 
 /* PRIMARY MENU */
