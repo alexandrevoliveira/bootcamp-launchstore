@@ -11,10 +11,6 @@
 //             style: 'currency',
 //             currency: 'BRL'
 //         }).format(value/100)
-    
-//         event.target.value = value
-
-//         console.log(value)
 //     },1)
 
 // })
