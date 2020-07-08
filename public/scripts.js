@@ -12,6 +12,7 @@
 //             currency: 'BRL'
 //         }).format(value/100)
 //     },1)
+//         event.target.value = value
 
 // })
 
