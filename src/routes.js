@@ -1,7 +1,7 @@
 const express = require('express')
 const routes = express.Router()
 const ProductController = require('./app/controllers/ProductController')
-const multer = require('multer')
+const multer = require('../src/app/middlewares/multer')
 
 routes.get("/", function(req, res) {
     return res.render('layout')
