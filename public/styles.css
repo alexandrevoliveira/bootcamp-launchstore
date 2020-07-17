@@ -3,6 +3,9 @@
 :root {
     --primary-color: #fd951f;
     --secondary-color: #1f83fd;
+    --button-color: #ec470d;
+    --top-color: #262626;
+    --page-link: #00adef;
 
 }
 
@@ -23,13 +26,20 @@ html, body {
 
 body {
     font-family: 'Roboto', sans-serif;
+
     background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
 }
 
 .container {
     width: 90%;
     max-width: 940px;
     margin: 0 auto;
+}
+
+footer {
+    margin-top: auto;
 }
 
 .button {
@@ -200,7 +210,6 @@ form .item > div:nth-child(1) {
 form .item input[type="text"],
 form .item input[type="number"],
 form .item textarea,
-form .item input[type="radio"],
 form .item select {
     width: 100%;
 
@@ -238,7 +247,7 @@ form .item span {
     background-color: var(--primary-color);
     border-radius: 16px;
     color: white;
-    margin-right: 4px;
+    margin-right: 8px;
     margin-top: 8px;
     display: inline-block;
     font-weight: bold;
@@ -335,3 +344,83 @@ form .item #photos-preview .photo {
 #photos-preview .photo:hover i{
     opacity: 1;
 }
+
+/* PRODUCT VIEW */
+
+.product-single {
+    background-color: white;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 24px;
+
+    padding: 32px 24px;
+    margin: 32px auto;
+
+    box-shadow: 2px 2px 2px 0px rgba(63, 63, 63, .3);
+    border: 1px solid #efefef;
+    border-radius: 4px;
+}
+
+.product-single .gallery {
+    width: 100%;
+}
+
+.product-single .gallery img {
+    width: 100%;
+}
+
+/* product single info */
+
+.product-single .info {
+    display: grid;
+    grid-template-rows: auto 40px 2fr 1fr;
+}
+
+.product-single .info h1 {
+    font-size: 32px;
+    line-height: 42px;
+    color: #333;
+    text-transform: uppercase;
+}
+
+.product-single .info .published {
+    color: #888;
+    font-size: 12px;
+    line-height: 22px;
+    letter-spacing: .9px;
+}
+
+/* price-buy */
+.product-single .price-buy {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-top: 8px;
+    border-top: 1px solid #eee;
+}
+
+.product-single .price-buy .price {
+    font-size: 24px;
+    color: #333;
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+}
+
+.product-single .price-buy .price span.old {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 14px;
+    font-weight: normal;
+    margin-left: 8px;
+}
+
+.product-single .price-buy .buy button {
+    background: var(--secondary-color);
+
+    font-size: 14px;
+    letter-spacing: .8px;
+}
+

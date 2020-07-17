@@ -24,7 +24,7 @@ module.exports = {
             data.old_price,
             data.price,
             data.quantity,
-            data.status
+            data.status || 0
         ]
 
         return db.query(query, values)
