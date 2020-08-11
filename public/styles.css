@@ -39,7 +39,17 @@ body {
 }
 
 footer {
+    /* footer fixado no fim */
     margin-top: auto;
+
+    background-color: black;
+    color: white;
+    
+    width: 100%;
+    padding: 16px 0;
+    font-size: 12px;
+
+    text-align: center;
 }
 
 .button {
@@ -88,7 +98,7 @@ footer {
 
 /* HEADER */
 
-header, footer {
+header {
     background-color: black;
     color: white;
     
@@ -568,4 +578,49 @@ form .item #photos-preview .photo {
     color: #999;
 
     text-decoration: line-through;
+}
+
+/* SEARCH PAGE */
+
+.search-products {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    margin-top: 48px;
+    margin-bottom: 12px;
+}
+
+.search-products .header {
+    margin-bottom: 48px;
+
+    font-size: 14px;
+    color: #333;
+}
+
+.search-products .header h2 {
+    font-size: 26px;
+    text-transform: capitalize;
+
+    margin-bottom: 8px;
+}
+
+.search-products nav.categories h4 {
+    margin-bottom: 8px;    
+
+    color: #333;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.search-products nav.categories ul li {
+    margin: 4px 0;
+}
+
+.search-products nav.categories ul li a {
+    color: #777;
+    font-size: 14px;
+}
+
+.search-products nav.categories ul li a:hover {
+    color: #777;
+    font-weight: bold;
 }
