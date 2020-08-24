@@ -1,7 +1,14 @@
+DROP DATABASE IF EXISTS launchstoredb;
+CREATE DATABASE launchstoredb;
+
 CREATE TABLE "categories" (
     "id" SERIAL PRIMARY KEY,
     "name" text NOT NULL
 );
+
+INSERT INTO categories(name) VALUES ('comida');
+INSERT INTO categories(name) VALUES ('eletrônicos');
+INSERT INTO categories(name) VALUES ('automóveis');
 
 CREATE TABLE "files" (
     "id" SERIAL PRIMARY KEY,
@@ -12,14 +19,14 @@ CREATE TABLE "files" (
 
 CREATE TABLE "products" (
     "id" SERIAL PRIMARY KEY,
-    "category_id" int,
+    "category_id" int NOT NULL,
     "user_id" int,
-    "name" text,
-    "description" text,
+    "name" text NOT NULL,
+    "description" text NOT NULL,
     "old_price" int,
-    "price" int,
-    "quantity" int,
-    "status" int,
+    "price" int NOT NULL,
+    "quantity" int DEFAULT 0,
+    "status" int DEFAULT 1,
     "created_at" timestamp DEFAULT (now()),
     "updated_at" timestamp DEFAULT (now())
 );
@@ -27,8 +34,22 @@ CREATE TABLE "products" (
 ALTER TABLE "files" ADD FOREIGN KEY ("product_id") REFERENCES "products" ("id");
 ALTER TABLE "products" ADD FOREIGN KEY ("category_id") REFERENCES "categories" ("id");
 
+CREATE TABLE "users" (
+    "id" SERIAL PRIMARY KEY,
+    "name" text NOT NULL,
+    "email" text UNIQUE NOT NULL,
+    "password" text NOT NULL,
+    "cpf_cnpj" text UNIQUE NOT NULL,
+    "cep" text,
+    "address" text,
+    "created_at" TIMESTAMP DEFAULT (now()),
+    "updated_at" TIMESTAMP DEFAULT (now())
+);
 
--- trigger to set the actual time when updated
+-- foreign key
+ALTER TABLE "products" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
+
+-- create procedure
 CREATE FUNCTION trigger_set_timestamp()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -37,7 +58,14 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+-- auto updated_at products
 CREATE TRIGGER set_timestamp
 BEFORE UPDATE ON products
+FOR EACH ROW
+EXECUTE PROCEDURE trigger_set_timestamp();
+
+-- auto updated_at users
+CREATE TRIGGER set_timestamp
+BEFORE UPDATE ON users
 FOR EACH ROW
 EXECUTE PROCEDURE trigger_set_timestamp();
