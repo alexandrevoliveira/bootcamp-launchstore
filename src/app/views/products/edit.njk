@@ -1,4 +1,5 @@
 {% extends "layout.njk" %}
+{% import "parts/confirm.njk" as confirm %}
 
 {% block content %}
 
@@ -23,7 +24,7 @@
         <button class="button delete" type="submit">Deletar</button>
     </form>
 
-    {% include "confirm.njk" %}
+    {{ confirm.confirm('Deseja deletar?') }}
 
 </section>
 
