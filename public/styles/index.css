@@ -624,7 +624,8 @@ form .item #photos-preview .photo {
 }
 
 /* user register */
-.user-register.container.form {
+.user-register.container.form,
+.user-dashboard.container.form {
     max-width: 500px
 }
 
