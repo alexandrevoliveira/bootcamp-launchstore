@@ -3,9 +3,11 @@ const express = require('express')  // importamos o modulo express (servidor) na
 const nunjucks = require('nunjucks') 
 const routes = require('./routes') 
 const methodOverride = require('method-override')
+const session = require('./config/session')
 
 const server = express() // criação do servidor na variável server
 
+server.use(session)
 server.use(express.urlencoded({ extended: true })) // urlencoded é um parser das informações vindas no corpo da requisição
 server.use(express.static('public')) // serve arquivos estáticos da pasta public
 server.use(methodOverride('_method')) // método para que possamos utilizar PUT e DELETE nos forms
