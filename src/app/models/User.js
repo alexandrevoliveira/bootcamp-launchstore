@@ -11,7 +11,7 @@ module.exports = {
             // 1 vez = SELECT * FROM users WHERE
 
             Object.keys(filters[key]).map(field => {
-                // 1 vez = SELECT * FROM users WHERE \ email = email
+                // 1 vez = SELECT * FROM users WHERE \ email = 'alexandre@gmail.com'
                 query += ` ${field} = '${filters[key][field]}'`
             })
         })
@@ -52,5 +52,19 @@ module.exports = {
         } catch (err) {
             console.error(err)
         }
+    },
+    async update(id, fields){
+        let query = "UPDATE users SET"
+
+        Object.keys(fields).map((key, index, array) => {
+            if((index + 1) < array.length) {
+                query += ` ${key} = '${fields[key]}',`
+            } else {
+                query += ` ${key} = '${fields[key]}' WHERE id = ${id}`
+            }
+        })
+
+        await db.query(query)
+        return
     }
 }
