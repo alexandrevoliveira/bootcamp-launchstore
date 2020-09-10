@@ -30,7 +30,11 @@
         <input 
             type="password" 
             name="password" 
-            placeholder="Digite uma senha segura"
+            {% if not user.id %}
+                placeholder="Digite uma senha segura"
+            {% else %}
+                placeholder="Digite sua senha para atualizar seu cadastro"
+            {% endif %}
         >
     </div>
 </div>

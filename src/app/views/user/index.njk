@@ -1,0 +1,31 @@
+{% extends "layout.njk" %}
+{% import "parts/confirm.njk" as confirm %}
+
+{% block content %}
+
+<section class="user-dashboard container form">
+    <form method="POST" action="/users?_method=PUT">
+        
+        <div class="header">
+            <h3>Detalhes</h3>
+        </div>
+
+        <div class="fields">
+            {% include "user/fields.njk" %}
+            <input type="hidden" name="id" value="{{user.id}}">
+        </div>
+
+        <button class="button edit" type="submit">Atualizar</button>
+
+    </form>
+
+    <form id="form-delete" method="POST" action="/users?_method=DELETE">
+        <input type="hidden" name="id" value="{{user.id}}">
+        <button class="button delete" type="submit">Deletar</button>
+    </form>
+
+    {{ confirm.confirm('Tem certeza que deseja excluir sua conta? Essa operação não poderá ser desfeita.') }}
+
+</section>
+
+{% endblock %}
