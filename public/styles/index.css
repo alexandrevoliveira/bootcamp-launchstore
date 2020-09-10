@@ -629,12 +629,12 @@ form .item #photos-preview .photo {
     max-width: 500px
 }
 
-.form input[name="email"],
-.form input[name="password"],
-.form input[name="passwordRepeat"],
-.form input[name="cpf_cnpj"],
-.form input[name="cep"],
-.input .error {
+section.user-register.container input[name="email"],
+section.user-register.container input[name="password"],
+section.user-register.container input[name="passwordRepeat"],
+section.user-register.container input[name="cpf_cnpj"],
+section.user-register.container input[name="cep"],
+section.user-register.container .input .error {
     max-width: 60%;
 }
 
