@@ -8,6 +8,11 @@ const session = require('./config/session')
 const server = express() // criação do servidor na variável server
 
 server.use(session)
+server.use((req, res, next) => {
+    res.locals.session = req.session // variável global da sessao do usuário para ser acessada em qualquer lugar do nosso nunjucks (template engine) 
+    next()
+})
+
 server.use(express.urlencoded({ extended: true })) // urlencoded é um parser das informações vindas no corpo da requisição
 server.use(express.static('public')) // serve arquivos estáticos da pasta public
 server.use(methodOverride('_method')) // método para que possamos utilizar PUT e DELETE nos forms
