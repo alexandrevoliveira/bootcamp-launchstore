@@ -13,7 +13,7 @@ routes.get("/search", SearchController.index)
 
 // Products
 routes.get("/create", onlyUsers, ProductController.create)
-routes.get("/:id", onlyUsers, ProductController.show)
+routes.get("/:id", ProductController.show)
 routes.get("/:id/edit", onlyUsers, ProductController.edit)
 
 routes.post("/", onlyUsers, multer.array("photos", 6), ProductController.post)
