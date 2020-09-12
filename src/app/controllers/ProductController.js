@@ -19,25 +19,34 @@ module.exports = {
         })
     },
     async post(req, res) {
-        const keys = Object.keys(req.body)
+        try {
+            const keys = Object.keys(req.body)
 
-        for(let key of keys) {
-            if(req.body[key] == "") return res.send("Please, fill all fields.")
+            for(let key of keys) {
+                if(req.body[key] == "") return res.send("Please, fill all fields.")
+            }
+    
+            if(req.files.length == 0) {
+                return res.send('Please, send at least one image')
+            }
+                   
+            req.body.price = req.body.price.replace(/\D/g, "")
+            
+            req.body.user_id = req.session.userId
+            
+            let results = await Product.create(req.body)
+            const productId = results.rows[0].id
+    
+            const filesPromise = req.files.map(file => {File.create({...file, product_id: productId})})
+            await Promise.all(filesPromise)
+    
+            return res.redirect(`/products/${productId}/edit`)
+        } catch (err) {
+            console.error(err)
+            return res.render("products/create", {
+                error: "Falha na criação do produto"
+            })
         }
-
-        if(req.files.length == 0) {
-            return res.send('Please, send at least one image')
-        }
-               
-        req.body.price = req.body.price.replace(/\D/g, "")
-        
-        let results = await Product.create(req.body)
-        const productId = results.rows[0].id
-
-        const filesPromise = req.files.map(file => {File.create({...file, product_id: productId})})
-        await Promise.all(filesPromise)
-
-        return res.redirect(`/products/${productId}/edit`)
     },
     async show(req, res) {
 
